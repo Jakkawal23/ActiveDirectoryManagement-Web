@@ -1,0 +1,82 @@
+<div class="pt-2">
+  <h1>การจัดการข้อมูลบุคคล</h1>
+</div>
+
+
+<hr class="title-line">
+
+<div class="card">
+    <div class="card-body p-4">
+        <div class="title">ค้นหาพนักงาน</div>
+        <div class="row mb-3">
+            <div class="col-12 col-md-6 col-sm-12">
+                <div class="row mb-3">
+                    <div class="col-md-11">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    </div>
+                    <div class="col-md-1">
+                        <button button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+              <!-- Position Column -->
+              <ng-container matColumnDef="position">
+                <th class="table-id" mat-header-cell *matHeaderCellDef> รหัสพนักงาน </th>
+                <td class="table-id" mat-cell *matCellDef="let element"> {{element.position}} </td>
+              </ng-container>
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th class="table-name" mat-header-cell *matHeaderCellDef> ชื่อ </th>
+                <td class="table-name" mat-cell *matCellDef="let element"> {{element.name}} </td>
+              </ng-container>
+          
+              <!-- Weight Column -->
+              <ng-container matColumnDef="weight">
+                <th class="table-lastname" mat-header-cell *matHeaderCellDef> สกุล </th>
+                <td class="table-lastname" mat-cell *matCellDef="let element"> {{element.weight}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="symbol1">
+                <th class="table-action" mat-header-cell *matHeaderCellDef> สถานะ </th>
+                <td class="table-action" mat-cell *matCellDef="let element">
+                    <button type="button" class="btn bg-green">
+                        <mat-icon class="material-icons"> {{element.symbol1}} </mat-icon>
+                    </button>  
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="symbol">
+                <th class="table-action" mat-header-cell *matHeaderCellDef> แก้ไขรหัสผ่าน </th>
+                <td class="table-action" mat-cell *matCellDef="let element">
+                    <button type="button" class="btn bg-blue">
+                        <mat-icon class="material-icons">search</mat-icon>
+                    </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="symbol2">
+                <th class="table-action" mat-header-cell *matHeaderCellDef align="center"> ลบผู้ใช้งาน </th>
+                <td class="table-action" mat-cell *matCellDef="let element" align="center">
+                    <button type="button" class="btn bg-red">
+                        <mat-icon class="material-icons">close</mat-icon>
+                    </button>
+                </td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                           showFirstLastButtons
+                           aria-label="Select page of periodic elements">
+            </mat-paginator>
+
+          </div>
+    </div>
+  </div>

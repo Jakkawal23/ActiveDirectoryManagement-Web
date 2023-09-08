@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+  }
+  
+  td, th {
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+  }
+  
+  th{
+    font-weight:bold;
+  }
+  
+  .table-id{
+    width:25%;
+    text-align: center;
+    justify-content:center;
+  }
+  
+  .table-name{
+    width:21%;
+  }
+  
+  .table-lastname{
+    width:21%;
+  }
+  
+  .table-action{
+    width:11%;
+    text-align: center;
+    justify-content:center;
+  }

@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+body {
+    font-family: 'Kanit', sans-serif;
+    background: #F4F8FF;
+    color: #34495e;
+}
+
+a {
+  color: #c0392b;
+  font-size: 20px;
+}
+
+.title{
+  font-size: 24px;
+}
+
+.title-line{
+  border: none; 
+  border-top: 2px solid #000;
+  margin: 20px 0;
+}
+
+.sub-title{
+  font-size: 20px;
+}
+
+.bg-green{
+  color: white;
+  background-color: #9DE297;
+  width: 90px;
+  border-radius: 12px;
+}
+
+.bg-green:hover{
+  color: white;
+  background-color: #4fe242;
+}
+
+.bg-blue{
+  color: white;
+  background-color: #708CEF;
+  width: 90px;
+  border-radius: 12px;
+}
+
+.bg-blue:hover{
+  color: white;
+  background-color: #4267ec;
+  width: 90px;
+  border-radius: 12px;
+}
+
+.bg-red{
+  color: white;
+  background-color: #DF6565;
+  width: 90px;
+  border-radius: 12px;
+}
+
+.bg-red:hover{
+  color: white;
+  background-color: #e61d1d;
+  width: 90px;
+  border-radius: 12px;
+}
