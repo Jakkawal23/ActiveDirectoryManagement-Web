@@ -16,7 +16,6 @@ export class NotificationComponent implements AfterViewInit{
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-
 }
 
 export interface PeriodicElement {

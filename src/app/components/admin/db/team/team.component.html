@@ -1,0 +1,108 @@
+<div class="pt-2">
+    <h1>จัดการทีม</h1>
+</div>
+  
+  
+  <hr class="title-line">
+  
+  <div class="card">
+    <div class="card-body p-4">
+        <div class="title">ค้นหาทีม</div>
+        <div class="row mb-3">
+            <div class="col-12 col-md-6 col-sm-12">
+                <div class="row mb-3">
+                    <div class="col-md-11">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchKeyword">
+                    </div>
+                    <div class="col-md-1">
+                        <button button class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="search(searchKeyword)">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-sm-12">
+              <div class="d-flex justify-content-end save-but">
+                <button type="button" class="btn btn-primary" [routerLink]="['detail']">
+                  <mat-icon>add</mat-icon> <span>เพิ่ม</span>
+                </button>
+              </div>
+            </div>
+        </div>
+        
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+              <ng-container matColumnDef="teamCode">
+                <th class="table-id" mat-header-cell *matHeaderCellDef> รหัสทีม </th>
+                <td class="table-id" mat-cell *matCellDef="let element"> {{element.teamCode}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="teamNameTH">
+                <th class="table-name" mat-header-cell *matHeaderCellDef> ชื่อ ไทย </th>
+                <td class="table-name" mat-cell *matCellDef="let element"> {{element.teamNameTH}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="teamNameEN">
+                <th class="table-lastname" mat-header-cell *matHeaderCellDef> ชื่อ อังกฤษ </th>
+                <td class="table-lastname" mat-cell *matCellDef="let element"> {{element.teamNameEN}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="active">
+                <th class="table-action" mat-header-cell *matHeaderCellDef> สถานะ </th>
+                <td class="table-action" mat-cell *matCellDef="let element">
+                  <div *ngIf="element.active" class="btn bg-green">
+                    Active
+                  </div>
+                  <div *ngIf="!element.active" class="btn bg-red">
+                    Inactive
+                  </div> 
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="detail">
+                <th class="table-action" mat-header-cell *matHeaderCellDef> แก้ไขทีม </th>
+                <td class="table-action" mat-cell *matCellDef="let element">
+                    <button type="button" class="btn bg-blue" [routerLink]="['detail']" [queryParams]=
+                    "{teamId: element.teamId }">
+                        <mat-icon class="material-icons">search</mat-icon>
+                    </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="delete">
+                <th class="table-action" mat-header-cell *matHeaderCellDef align="center"> ลบทีม </th>
+                <td class="table-action" mat-cell *matCellDef="let element" align="center">
+                    <button type="button" class="btn bg-red" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="deleteId(element.teamId)">
+                        <mat-icon class="material-icons">close</mat-icon>
+                    </button>
+                </td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                            showFirstLastButtons
+                            aria-label="Select page of periodic elements">
+            </mat-paginator>
+          </div>
+    </div>
+  </div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ยืนยันการลบข้อมูล</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        หากท่านลบข้อมูลแล้ว จะไม่สามารถกู้คืนข้อมูลได้อีก
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteTeam()">ยืนยัน</button>
+      </div>
+    </div>
+  </div>
+</div>

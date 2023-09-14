@@ -33,23 +33,48 @@
           Admin
         </div>
         <a
-          routerLink="addEmployee"
+          routerLink="admin/addEmployee"
           class="list-group-item list-group-item-action py-2 ripple"
           aria-current="true"
         >
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>เพิ่มผู้ใช้งาน</span>
         </a>
         <a 
-          routerLink="notification"
+          routerLink="admin/notification"
           class="list-group-item list-group-item-action py-2 ripple ">
           <i class="fas fa-chart-area fa-fw me-3"></i><span>การแจ้งเตือน</span>
         </a>
         <a 
-          routerLink="manageEmployee"
+          routerLink="admin/manageEmployee"
           class="list-group-item list-group-item-action py-2 ripple">
           <i class="fas fa-chart-area fa-fw me-3"></i><span>จัดการข้อมูลบุคคล</span>
         </a>
 
+        <div style="font-size: 20px; color: black; padding-left: 10px; margin-top: 10px;">
+          จัดการข้อมูลในระบบ
+        </div>
+
+        <a 
+          routerLink="admin/department"
+          class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-area fa-fw me-3"></i><span>แผนก</span>
+        </a>
+        <a 
+          routerLink="admin/team"
+          class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-area fa-fw me-3"></i><span>ทีม</span>
+        </a>
+        <a 
+          routerLink="admin/status"
+          class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-area fa-fw me-3"></i><span>สถานะ</span>
+        </a>
+        <a 
+          routerLink="admin/profile"
+          class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-area fa-fw me-3"></i><span>โปรไฟล์</span>
+        </a>
+        
         <div style="font-size: 25px; color: black; padding-left: 10px; margin-top: 15px;">
           Emplyee
         </div>

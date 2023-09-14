@@ -1,0 +1,40 @@
+<div class="title-save-container pt-2">
+    <div class="title">
+        <h1>ข้อมูลแผนก</h1>
+    </div>
+    <div class="save-but">
+        <button type="button" class="btn btn-primary" (click)="Save()">
+            <mat-icon>save</mat-icon> <span>บันทึก</span>
+        </button>
+    </div>
+</div>
+
+<hr class="title-line">
+
+<div class="card">
+    <div class="card-body p-4">
+        <form [formGroup]="formDepartment">
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">รหัสแผนก</div>
+                    <input class="form-control" type="text" placeholder="รหัสแผนก" formControlName="departmentCode">
+                </div>
+                <div class="col-12 col-md-6 col-sm-12">
+                        <mat-checkbox class="mt-4" color="primary" formControlName="active">
+                            <div class="sub-title">Active</div>
+                        </mat-checkbox>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">ชื่อ ไทย</div>
+                    <input class="form-control" type="text" placeholder="ชื่อ ไทย" formControlName="departmentNameTH">
+                </div>
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">ชื่อ อังกฤษ</div>
+                    <input class="form-control" type="text" placeholder="ชื่อ อังกฤษ" formControlName="departmentNameEN">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

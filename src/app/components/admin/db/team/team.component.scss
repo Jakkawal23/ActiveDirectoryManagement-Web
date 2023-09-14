@@ -1,0 +1,47 @@
+table {
+    width: 100%;
+  }
+  
+  td, th {
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+  }
+  
+  th{
+    font-weight:bold;
+  }
+  
+  .table-id{
+    width:25%;
+    text-align: center;
+    justify-content:center;
+  }
+  
+  .table-name{
+    width:21%;
+  }
+  
+  .table-lastname{
+    width:21%;
+  }
+  
+  .table-action{
+    width:11%;
+    text-align: center;
+    justify-content:center;
+  }
+
+  .save-but button {
+    margin-bottom: 20px; 
+    margin-right: 15px;
+  }
+  
+  .save-but mat-icon {
+    margin-right: 7px;
+    margin-top: 3px;
+  }
+  
+  .save-but span {
+    font-size: 18px;
+  }
+  

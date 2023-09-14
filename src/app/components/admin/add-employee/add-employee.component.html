@@ -20,7 +20,11 @@
             </div>
             <div class="col-12 col-md-6 col-sm-12">
                 <div class="sub-title">ตำแหน่งงาน</div>
-                <input class="form-control" type="text" placeholder="ตำแหน่งงาน">
+                <select class="form-select">
+                    <option value="" disabled selected hidden>กรุณาเลือก ตำแหน่งงาน</option>
+                    <!-- <option value="1">One</option> -->
+                    <option *ngFor="let element of departments" value="{{element.departmentCode}}">{{element.departmentNameEN}}</option>
+                </select>
             </div>
         </div>
         <div class="row mb-3">
@@ -55,7 +59,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-12 col-md-6 col-sm-12">
-                
+
             </div>
             <div class="col-12 col-md-6 col-sm-12">
                 <div class="sub-title">ยืนยันรหัสผ่าน</div>
@@ -63,4 +67,6 @@
             </div>
         </div>
     </div>
-  </div>
+    
+</div>
+
