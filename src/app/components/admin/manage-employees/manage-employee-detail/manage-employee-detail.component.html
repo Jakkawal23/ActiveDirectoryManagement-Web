@@ -1,5 +1,12 @@
-<div class="pt-2">
-    <h1>ข้อมูลผู้ใช้งาน</h1>
+<div class="title-save-container pt-2">
+    <div class="title">
+        <h1>ข้อมูลพนักงาน</h1>
+    </div>
+    <div class="save-but">
+        <button type="button" class="btn btn-primary" (click)="Save()">
+            <mat-icon>save</mat-icon> <span>บันทึก</span>
+        </button>
+    </div>
 </div>
 
 <hr class="title-line">
@@ -7,22 +14,6 @@
 <div class="card">
     <div class="card-body p-4">
         <form [formGroup]="formEmployee">
-            <div class="row mb-3">
-                <div class="col-12 col-md-12 col-sm-12">
-                    <div class="sub-title">ชื่อผู้ใช้</div>
-                    <input class="form-control" type="text" placeholder="ชื่อผู้ใช้" formControlName="userName" >
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-12 col-md-6 col-sm-12">
-                    <div class="sub-title">ชื่อ</div>
-                    <input class="form-control" type="text" placeholder="ชื่อ" formControlName="name">
-                </div>
-                <div class="col-12 col-md-6 col-sm-12">
-                    <div class="sub-title">สกุล</div>
-                    <input class="form-control" type="text" placeholder="สกุล" formControlName="lastName">
-                </div>
-            </div>
             <div class="row mb-3">
                 <div class="col-12 col-md-6 col-sm-12">
                     <div class="sub-title">รหัสพนักงาน</div>
@@ -52,7 +43,16 @@
                     </select>
                 </div>
             </div>
-            
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">ชื่อ</div>
+                    <input class="form-control" type="text" placeholder="ชื่อ" formControlName="name">
+                </div>
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">สกุล</div>
+                    <input class="form-control" type="text" placeholder="สกุล" formControlName="lastName">
+                </div>
+            </div>
             <div class="row mb-3">
                 <div class="col-12 col-md-6 col-sm-12">
                     <div class="sub-title">อีเมล์</div>
@@ -77,7 +77,22 @@
                     </mat-checkbox>
                 </div>
             </div>
-            
+            <div class="row mb-3">
+                <div class="col-12 col-md-12 col-sm-12">
+                    <div class="sub-title">ชื่อผู้ใช้</div>
+                    <input class="form-control" type="text" placeholder="ชื่อผู้ใช้" formControlName="userName">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">รหัสผ่าน</div>
+                    <input class="form-control" type="password" placeholder="รหัสผ่าน" formControlName="password">
+                </div>
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">ยืนยันรหัสผ่าน</div>
+                    <input class="form-control" type="password" placeholder="ยืนยันรหัสผ่าน" formControlName="passwordConfirm">
+                </div>
+            </div>
         </form>
     </div>
 </div>

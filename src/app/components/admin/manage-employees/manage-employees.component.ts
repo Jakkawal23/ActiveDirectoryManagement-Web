@@ -1,6 +1,12 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { EmployeeListDTO, ManageEmployeesService } from './manage-employees.service';
+import { ToastrService } from 'ngx-toastr';
+import { PositionDTO } from '../db/position/position.service';
+import { DepartmentDTO } from '../db/department/department.service';
+import { ProfileDTO } from '../su/profile/profile.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-manage-employees',
@@ -8,45 +14,113 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./manage-employees.component.scss']
 })
 export class ManageEmployeesComponent implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol1','symbol','symbol2'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedColumns: string[] = ['empCode', 'name', 'lastName','position', 'department','profile','active','detail','delete'];
+  dataSource = new MatTableDataSource<EmployeeListDTO>();
+  searchKeyword: string = '';
+  deleteEmployeeId: number;
+  positions:Array<PositionDTO>;
+  departments:Array<DepartmentDTO>;
+  profiles:Array<ProfileDTO>;
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatPaginator) paginator!: MatPaginator; // Using "!" to assert non-null
+
+  constructor(
+    private serivce: ManageEmployeesService,
+    private alert: ToastrService
+  ){}
+
+  ngOnInit(): void {
+    this.serivce.getMasterPositions().subscribe(result =>{
+      this.positions = result;
+      this.updateMasterList();
+      
+    });
+    this.serivce.getMasterDepartments().subscribe(result =>{
+      this.departments = result;
+      this.updateMasterList();
+    });
+    this.serivce.getMasterProfile().subscribe(result =>{
+      this.profiles = result;
+      this.updateMasterList();
+    });
+
+    
+  }
+
+  updateMasterList(){
+    if(this.positions && this.departments && this.profiles){
+      this.serivce.getMaster().pipe(
+        map(result => {
+          result.forEach((item : EmployeeListDTO) => {
+            const matchingPosition = this.positions.find(p => p.positionCode === item.positionCode);
+            if (matchingPosition) {
+              item.positionCode = matchingPosition.positionNameEN;
+            }
+            const matchingDepartment = this.departments.find(d => d.departmentCode === item.departmentCode);
+            if (matchingDepartment) {
+              item.departmentCode = matchingDepartment.departmentNameEN;
+            }
+            const matchingProfile = this.profiles.find(p => p.profileCode === item.profileCode);
+            if (matchingProfile) {
+              item.profileCode = matchingProfile.profileNameEN;
+            }
+          });
+          return result;
+        })
+      ).subscribe(result => {
+        this.dataSource.data = result;
+        this.dataSource._updateChangeSubscription();
+      });
+    }
+  }
+
+  updateSearchList(keyword: string){
+    if(this.positions && this.departments && this.profiles){
+      this.serivce.getSearch(keyword).pipe(
+        map(result => {
+          result.forEach((item : EmployeeListDTO) => {
+            const matchingPosition = this.positions.find(p => p.positionCode === item.positionCode);
+            if (matchingPosition) {
+              item.positionCode = matchingPosition.positionNameEN;
+            }
+            const matchingDepartment = this.departments.find(d => d.departmentCode === item.departmentCode);
+            if (matchingDepartment) {
+              item.departmentCode = matchingDepartment.departmentNameEN;
+            }
+            const matchingProfile = this.profiles.find(p => p.profileCode === item.profileCode);
+            if (matchingProfile) {
+              item.profileCode = matchingProfile.profileNameEN;
+            }
+          });
+          return result;
+        })
+      ).subscribe(result => {
+        this.dataSource.data = result;
+        this.dataSource._updateChangeSubscription();
+      });
+    }
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-}
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  symbol1: string;
-  symbol2: string;
-}
+  search(keyword: string){
+    if(keyword){
+      this.updateSearchList(keyword);
+    }else{
+      this.updateMasterList();
+    }
+  }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', symbol1: 'Active', symbol2: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', symbol1: 'Active', symbol2: 'H'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', symbol1: 'Active', symbol2: 'H'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be', symbol1: 'Active', symbol2: 'H'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B', symbol1: 'Active', symbol2: 'H'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C', symbol1: 'Active', symbol2: 'H'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N', symbol1: 'Active', symbol2: 'H'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O', symbol1: 'Active', symbol2: 'H'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F', symbol1: 'Active', symbol2: 'H'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne', symbol1: 'Active', symbol2: 'H'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na', symbol1: 'Active', symbol2: 'H'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg', symbol1: 'Active', symbol2: 'H'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al', symbol1: 'Active', symbol2: 'H'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si', symbol1: 'Active', symbol2: 'H'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P', symbol1: 'v', symbol2: 'H'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S', symbol1: 'Active', symbol2: 'H'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl', symbol1: 'Active', symbol2: 'H'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar', symbol1: 'Active', symbol2: 'H'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K', symbol1: 'Active', symbol2: 'H'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca', symbol1: 'Active', symbol2: 'H'},
-];
+  deleteId(Id : number){
+    this.deleteEmployeeId = Id;
+  }
+
+  deleteEmployee(){
+    this.serivce.delete(this.deleteEmployeeId).subscribe(result =>{
+      this.search(this.searchKeyword);
+      this.alert.success('ลบข้อมูลเรียบร้อย', 'ลบ');
+    });
+  }
+}

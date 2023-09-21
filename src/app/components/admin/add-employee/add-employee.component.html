@@ -3,7 +3,7 @@
         <h1>เพิ่มผู้ใช้งาน</h1>
     </div>
     <div class="save-but">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" (click)="Save()">
             <mat-icon>save</mat-icon> <span>บันทึก</span>
         </button>
     </div>
@@ -13,60 +13,67 @@
 
 <div class="card">
     <div class="card-body p-4">
-        <div class="row mb-3">
-            <div class="col-12 col-md-6 col-sm-12">
-                <div class="sub-title">รหัสพนักงาน</div>
-                <input class="form-control" type="text" placeholder="รหัสพนักงาน">
+        <form [formGroup]="formEmployee">
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">รหัสพนักงาน</div>
+                    <input class="form-control" type="text" placeholder="รหัสพนักงาน" formControlName="employeeCode">
+                </div>
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">ตำแหน่งงาน</div>
+                    <select class="form-select" formControlName="positionCode">
+                        <option value=null disabled selected hidden>กรุณาเลือก ตำแหน่งงาน</option>
+                        <option *ngFor="let element of positions" value="{{element.positionCode}}">{{element.positionNameEN}}</option>
+                    </select>
+                </div>
             </div>
-            <div class="col-12 col-md-6 col-sm-12">
-                <div class="sub-title">ตำแหน่งงาน</div>
-                <select class="form-select">
-                    <option value="" disabled selected hidden>กรุณาเลือก ตำแหน่งงาน</option>
-                    <!-- <option value="1">One</option> -->
-                    <option *ngFor="let element of departments" value="{{element.departmentCode}}">{{element.departmentNameEN}}</option>
-                </select>
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">แผนก</div>
+                    <select class="form-select" formControlName="departmentCode">
+                        <option value=null disabled selected hidden>กรุณาเลือก แผนก</option>
+                        <option *ngFor="let element of departments" value="{{element.departmentCode}}">{{element.departmentNameEN}}</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">ทีม</div>
+                    <select class="form-select" formControlName="teamCode">
+                        <option value=null disabled selected hidden>กรุณาเลือก ทีม</option>
+                        <option *ngFor="let element of teams" value="{{element.teamCode}}">{{element.teamNameEN}}</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12 col-md-6 col-sm-12">
-                <div class="sub-title">ชื่อ</div>
-                <input class="form-control" type="text" placeholder="ชื่อ">
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">ชื่อ</div>
+                    <input class="form-control" type="text" placeholder="ชื่อ" formControlName="name">
+                </div>
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">สกุล</div>
+                    <input class="form-control" type="text" placeholder="สกุล" formControlName="lastName">
+                </div>
             </div>
-            <div class="col-12 col-md-6 col-sm-12">
-                <div class="sub-title">สกุล</div>
-                <input class="form-control" type="text" placeholder="สกุล">
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">อีเมล์</div>
+                    <input class="form-control" type="email" placeholder="อีเมล์" formControlName="email">
+                </div>
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">เบอร์โทร</div>
+                    <input class="form-control" type="text" placeholder="เบอร์โทร" formControlName="mobilePhoneNo">
+                </div>
             </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12 col-md-6 col-sm-12">
-                <div class="sub-title">แผนก</div>
-                <input class="form-control" type="text" placeholder="แผนก">
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">รหัสผ่าน</div>
+                    <input class="form-control" type="password" placeholder="รหัสผ่าน" formControlName="password">
+                </div>
+                <div class="col-12 col-md-6 col-sm-12">
+                    <div class="sub-title">ยืนยันรหัสผ่าน</div>
+                    <input class="form-control" type="password" placeholder="ยืนยันรหัสผ่าน" formControlName="passwordConfirm">
+                </div>
             </div>
-            <div class="col-12 col-md-6 col-sm-12">
-                <div class="sub-title">เบอร์โทร</div>
-                <input class="form-control" type="text" placeholder="เบอร์โทร">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12 col-md-6 col-sm-12">
-                <div class="sub-title">อีเมล์</div>
-                <input class="form-control" type="text" placeholder="อีเมล์">
-            </div>
-            <div class="col-12 col-md-6 col-sm-12">
-                <div class="sub-title">รหัสผ่าน</div>
-                <input class="form-control" type="password" placeholder="รหัสผ่าน">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12 col-md-6 col-sm-12">
-
-            </div>
-            <div class="col-12 col-md-6 col-sm-12">
-                <div class="sub-title">ยืนยันรหัสผ่าน</div>
-                <input class="form-control" type="password" placeholder="ยืนยันรหัสผ่าน">
-            </div>
-        </div>
+        </form>
     </div>
-    
 </div>
 

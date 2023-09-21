@@ -39,9 +39,19 @@
                 <th class="table-lastname" mat-header-cell *matHeaderCellDef> สกุล </th>
                 <td class="table-lastname" mat-cell *matCellDef="let element"> {{element.weight}} </td>
               </ng-container>
+
+              <ng-container matColumnDef="symbol">
+                <th class="table-lastname" mat-header-cell *matHeaderCellDef> สกุล </th>
+                <td class="table-lastname" mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="symbol1">
+                <th class="table-lastname" mat-header-cell *matHeaderCellDef> สกุล </th>
+                <td class="table-lastname" mat-cell *matCellDef="let element"> {{element.symbol1}} </td>
+              </ng-container>
           
               <!-- Symbol Column -->
-              <ng-container matColumnDef="symbol">
+              <ng-container matColumnDef="symbol2">
                 <th class="table-action" mat-header-cell *matHeaderCellDef> รหัสผ่าน </th>
                 <td class="table-action" mat-cell *matCellDef="let element">
                     <button type="button" class="btn bg-blue">
@@ -50,7 +60,7 @@
                 </td>
               </ng-container>
 
-              <ng-container matColumnDef="symbol1">
+              <ng-container matColumnDef="symbol3">
                 <th class="table-action" mat-header-cell *matHeaderCellDef> อนุมัติ </th>
                 <td class="table-action" mat-cell *matCellDef="let element">
                     <button type="button" class="btn bg-green">
@@ -59,7 +69,7 @@
                 </td>
               </ng-container>
  
-              <ng-container matColumnDef="symbol2">
+              <ng-container matColumnDef="symbol4">
                 <th class="table-action" mat-header-cell *matHeaderCellDef align="center"> ไม่อนุมัติ </th>
                 <td class="table-action" mat-cell *matCellDef="let element" align="center">
                     <button type="button" class="btn bg-red">

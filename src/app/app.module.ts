@@ -27,6 +27,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './components/admin/su/profile/profile.component';
 import { ProfileDetailComponent } from './components/admin/su/profile/profile-detail/profile-detail.component';
+import { PositionComponent } from './components/admin/db/position/position.component';
+import { PositionDetailComponent } from './components/admin/db/position/position-detail/position-detail.component';
+import { ManageEmployeeDetailComponent } from './components/admin/manage-employees/manage-employee-detail/manage-employee-detail.component';
+import { LoginComponent } from './components/login/login/login.component';
+import { NavbarComponent } from './components/login/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +50,11 @@ import { ProfileDetailComponent } from './components/admin/su/profile/profile-de
     TeamDetailComponent,
     ProfileComponent,
     ProfileDetailComponent,
+    PositionComponent,
+    PositionDetailComponent,
+    ManageEmployeeDetailComponent,
+    LoginComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

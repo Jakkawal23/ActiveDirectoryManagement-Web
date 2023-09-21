@@ -14,12 +14,21 @@ import { StatusDetailComponent } from './components/admin/db/status/status-detai
 import { DepartmentDetailComponent } from './components/admin/db/department/department-detail/department-detail.component';
 import { ProfileComponent } from './components/admin/su/profile/profile.component';
 import { ProfileDetailComponent } from './components/admin/su/profile/profile-detail/profile-detail.component';
+import { PositionComponent } from './components/admin/db/position/position.component';
+import { PositionDetailComponent } from './components/admin/db/position/position-detail/position-detail.component';
+import { ManageEmployeeDetailComponent } from './components/admin/manage-employees/manage-employee-detail/manage-employee-detail.component';
+import { LoginComponent } from './components/login/login/login.component';
+import { NavbarComponent } from './components/login/navbar/navbar.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: AddEmployeeComponent
-  // },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'navbar',
+    component: NavbarComponent
+  },
   {
     path: 'admin/addEmployee',
     component: AddEmployeeComponent
@@ -31,6 +40,18 @@ const routes: Routes = [
   {
     path: 'admin/manageEmployee',
     component: ManageEmployeesComponent
+  },
+  {
+    path: 'admin/manageEmployee/detail',
+    component: ManageEmployeeDetailComponent
+  },
+  {
+    path: 'admin/position',
+    component: PositionComponent
+  },
+  {
+    path: 'admin/position/detail',
+    component: PositionDetailComponent
   },
   {
     path: 'admin/department',
