@@ -11,6 +11,7 @@ export class NavbarComponent {
 
   empCode : string;
   empName : string;
+  empProfile : string;
   private isFirstClick = true;
 
   constructor(
@@ -21,18 +22,20 @@ export class NavbarComponent {
 
   ngOnInit(){
     this.empCode = this.loginService.getLoginUser();
-    if(this.empCode == ''){
+    this.empProfile = this.loginService.getUserProfile();
+    if(this.empCode == '' || this.empProfile == ''){
       setInterval(() => {
         this.empCode = this.loginService.getLoginUser();
-
-          location.reload();
-      }, 5000);
+        this.empProfile = this.loginService.getUserProfile();
+        location.reload();
+      }, 200);
     }
     if(this.empCode != ''){
       this.loginService.getEmployeeName(this.empCode).subscribe((result: any) => {
         this.empName = result.employeeName;
       });
     }
+    this.router.navigate(['/employeeProfile'])
   }
 
   // @HostListener('document:click', ['$event'])

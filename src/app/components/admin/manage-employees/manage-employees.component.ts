@@ -33,7 +33,6 @@ export class ManageEmployeesComponent implements AfterViewInit {
     this.serivce.getMasterPositions().subscribe(result =>{
       this.positions = result;
       this.updateMasterList();
-      
     });
     this.serivce.getMasterDepartments().subscribe(result =>{
       this.departments = result;

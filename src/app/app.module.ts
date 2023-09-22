@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddEmployeeComponent } from './components/admin/add-employee/add-employee.component';
-import { NotificationComponent } from './components/admin/notification/notification.component';
 import { ManageEmployeesComponent } from './components/admin/manage-employees/manage-employees.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -32,12 +31,12 @@ import { PositionDetailComponent } from './components/admin/db/position/position
 import { ManageEmployeeDetailComponent } from './components/admin/manage-employees/manage-employee-detail/manage-employee-detail.component';
 import { LoginComponent } from './components/login/login/login.component';
 import { NavbarComponent } from './components/login/navbar/navbar.component';
+import { PasswordComponent } from './components/admin/document/password/password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddEmployeeComponent,
-    NotificationComponent,
     ManageEmployeesComponent,
     EmployeeProfileComponent,
     EditEmployeeComponent,
@@ -55,6 +54,7 @@ import { NavbarComponent } from './components/login/navbar/navbar.component';
     ManageEmployeeDetailComponent,
     LoginComponent,
     NavbarComponent,
+    PasswordComponent,
   ],
   imports: [
     BrowserModule,

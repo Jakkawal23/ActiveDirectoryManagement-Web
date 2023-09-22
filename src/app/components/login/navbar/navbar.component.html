@@ -3,76 +3,93 @@
     <!-- Sidebar -->
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
       <div class="position-sticky">
-        <div class="list-group list-group-flush mx-3 mt-4">
-          <!-- <div style="font-size: 25px; color: black; padding-left: 10px;">
-            Admin
+        <!-- <div class="list-group list-group-flush mx-3 mt-4"> -->
+          <div *ngIf="this.empProfile == 'Admin'" class="list-group list-group-flush mx-3 mt-4">
+            <div style="font-size: 25px; color: black; padding-left: 10px;">
+              Admin
+            </div>
+            <div style="font-size: 20px; color: black; padding-left: 10px; margin-top: 10px;">
+              จัดการข้อมูลผู้ใช้งาน
+            </div>
+            <a
+              routerLink="admin/addEmployee"
+              class="list-group-item list-group-item-action py-2 ripple"
+              aria-current="true">
+              <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>เพิ่มผู้ใช้งาน</span>
+            </a>
+            <a 
+              routerLink="admin/manageEmployee"
+              class="list-group-item list-group-item-action py-2 ripple">
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>จัดการข้อมูลผู้ใช้งาน</span>
+            </a>
+            <div style="font-size: 20px; color: black; padding-left: 10px; margin-top: 10px;">
+              คำร้องขอ
+            </div>
+            <a 
+              routerLink="document/password"
+              class="list-group-item list-group-item-action py-2 ripple ">
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>ร้องขอเปลี่ยนรหัสผ่าน</span>
+            </a>
+            
+    
+            <div style="font-size: 20px; color: black; padding-left: 10px; margin-top: 10px;">
+              จัดการข้อมูลในระบบ
+            </div>
+            <a 
+              routerLink="admin/position"
+              class="list-group-item list-group-item-action py-2 ripple">
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>ตำแหน่ง</span>
+            </a>
+            <a 
+              routerLink="admin/department"
+              class="list-group-item list-group-item-action py-2 ripple">
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>แผนก</span>
+            </a>
+            <a 
+              routerLink="admin/team"
+              class="list-group-item list-group-item-action py-2 ripple">
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>ทีม</span>
+            </a>
+            <a 
+              routerLink="admin/status"
+              class="list-group-item list-group-item-action py-2 ripple">
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>สถานะ</span>
+            </a>
+            <a 
+              routerLink="admin/profile"
+              class="list-group-item list-group-item-action py-2 ripple">
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>โปรไฟล์</span>
+            </a>
           </div>
-          <a 
-            routerLink="admin/notification"
-            class="list-group-item list-group-item-action py-2 ripple ">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>การแจ้งเตือน รหัสผ่าน</span>
-          </a>
-          <a
-            routerLink="admin/addEmployee"
-            class="list-group-item list-group-item-action py-2 ripple"
-            aria-current="true">
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>เพิ่มผู้ใช้งาน</span>
-          </a>
-          <a 
-            routerLink="admin/manageEmployee"
-            class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>จัดการข้อมูลผู้ใช้งาน</span>
-          </a>
-  
-          <div style="font-size: 20px; color: black; padding-left: 10px; margin-top: 10px;">
-            จัดการข้อมูลในระบบ
-          </div>
-          <a 
-            routerLink="admin/position"
-            class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>ตำแหน่ง</span>
-          </a>
-          <a 
-            routerLink="admin/department"
-            class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>แผนก</span>
-          </a>
-          <a 
-            routerLink="admin/team"
-            class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>ทีม</span>
-          </a>
-          <a 
-            routerLink="admin/status"
-            class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>สถานะ</span>
-          </a>
-          <a 
-            routerLink="admin/profile"
-            class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>โปรไฟล์</span>
-          </a> -->
           
-          <div style="font-size: 25px; color: black; padding-left: 10px; margin-top: 15px;">
-            Emplyee
+          
+          <div class="list-group list-group-flush mx-3">
+            <div style="font-size: 25px; color: black; padding-left: 10px; margin-top: 15px;">
+              Emplyee
+            </div>
+            <div style="font-size: 20px; color: black; padding-left: 10px; margin-top: 10px;">
+              จัดการข้อมูลส่วนตัว
+            </div>
+            <a 
+              routerLink="employeeProfile"
+              class="list-group-item list-group-item-action py-2 ripple">
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>ข้อมูลผู้ใช้งาน</span>
+            </a>
+            <a 
+              routerLink="editEmployee"
+              class="list-group-item list-group-item-action py-2 ripple">
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>แก้ไขข้อมูลผู้ใช้งาน</span>
+            </a>
+            <div style="font-size: 20px; color: black; padding-left: 10px; margin-top: 10px;">
+              การร้องขอ
+            </div>
+            <a 
+              routerLink="changePassword"
+              class="list-group-item list-group-item-action py-2 ripple">
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>แก้ไขรหัสผ่าน</span>
+            </a>
           </div>
-  
-          <a 
-            routerLink="changePassword"
-            class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>แก้ไขรหัสผ่าน</span>
-          </a>
-          <a 
-            routerLink="employeeProfile"
-            class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>ข้อมูลผู้ใช้งาน</span>
-          </a>
-          <a 
-            routerLink="editEmployee"
-            class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>แก้ไขข้อมูลผู้ใช้งาน</span>
-          </a>
-        </div>
+        <!-- </div> -->
       </div>
       <div style="bottom: 2px;">
         <button id="logoutButton" class="btn position-absolute" (click)="logout()">

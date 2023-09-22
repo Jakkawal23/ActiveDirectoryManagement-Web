@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddEmployeeComponent } from './components/admin/add-employee/add-employee.component';
-import { NotificationComponent } from './components/admin/notification/notification.component';
 import { ManageEmployeesComponent } from './components/admin/manage-employees/manage-employees.component';
 import { EmployeeProfileComponent } from './components/employee/employee-profile/employee-profile.component';
 import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
@@ -19,6 +18,7 @@ import { PositionDetailComponent } from './components/admin/db/position/position
 import { ManageEmployeeDetailComponent } from './components/admin/manage-employees/manage-employee-detail/manage-employee-detail.component';
 import { LoginComponent } from './components/login/login/login.component';
 import { NavbarComponent } from './components/login/navbar/navbar.component';
+import { PasswordComponent } from './components/admin/document/password/password.component';
 
 const routes: Routes = [
   {
@@ -34,8 +34,8 @@ const routes: Routes = [
     component: AddEmployeeComponent
   },
   {
-    path: 'admin/notification',
-    component: NotificationComponent
+    path: 'document/password',
+    component: PasswordComponent
   },
   {
     path: 'admin/manageEmployee',
