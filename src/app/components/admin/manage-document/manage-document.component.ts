@@ -1,20 +1,20 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import { EmployeeListDTO, ManageEmployeesService } from './manage-employees.service';
+import { AfterViewInit, Component ,ViewChild} from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
+import { EmployeeListDTO, ManageDocumentService } from './manage-document.service';
 import { PositionDTO } from '../db/position/position.service';
 import { DepartmentDTO } from '../db/department/department.service';
 import { ProfileDTO } from '../su/profile/profile.service';
+import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs';
 
 @Component({
-  selector: 'app-manage-employees',
-  templateUrl: './manage-employees.component.html',
-  styleUrls: ['./manage-employees.component.scss']
+  selector: 'app-manage-document',
+  templateUrl: './manage-document.component.html',
+  styleUrls: ['./manage-document.component.scss']
 })
-export class ManageEmployeesComponent implements AfterViewInit {
-  displayedColumns: string[] = ['empCode', 'name', 'lastName','position', 'department','profile','active','detail','delete'];
+export class ManageDocumentComponent implements AfterViewInit {
+  displayedColumns: string[] = ['empCode', 'name', 'lastName','position', 'department','profile','active','detail'];
   dataSource = new MatTableDataSource<EmployeeListDTO>();
   searchKeyword: string = '';
   deleteEmployeeId: number;
@@ -22,12 +22,13 @@ export class ManageEmployeesComponent implements AfterViewInit {
   departments:Array<DepartmentDTO>;
   profiles:Array<ProfileDTO>;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator; // Using "!" to assert non-null
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private serivce: ManageEmployeesService,
+    private serivce: ManageDocumentService,
     private alert: ToastrService
   ){}
+
 
   ngOnInit(): void {
     this.serivce.getMasterPositions().subscribe(result =>{
@@ -110,14 +111,4 @@ export class ManageEmployeesComponent implements AfterViewInit {
     }
   }
 
-  deleteId(Id : number){
-    this.deleteEmployeeId = Id;
-  }
-
-  deleteEmployee(){
-    this.serivce.delete(this.deleteEmployeeId).subscribe(result =>{
-      this.search(this.searchKeyword);
-      this.alert.success('ลบข้อมูลเรียบร้อย', 'ลบ');
-    });
-  }
 }

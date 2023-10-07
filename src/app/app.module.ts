@@ -32,6 +32,9 @@ import { ManageEmployeeDetailComponent } from './components/admin/manage-employe
 import { LoginComponent } from './components/login/login/login.component';
 import { NavbarComponent } from './components/login/navbar/navbar.component';
 import { PasswordComponent } from './components/admin/document/password/password.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { ManageDocumentComponent } from './components/admin/manage-document/manage-document.component';
+import { ManageDocumentDetailComponent } from './components/admin/manage-document/manage-document-detail/manage-document-detail.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,8 @@ import { PasswordComponent } from './components/admin/document/password/password
     LoginComponent,
     NavbarComponent,
     PasswordComponent,
+    ManageDocumentComponent,
+    ManageDocumentDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +75,7 @@ import { PasswordComponent } from './components/admin/document/password/password
     HttpClientModule,
     FormsModule ,
     MatDialogModule,
+    MatTabsModule,
     ToastrModule.forRoot(),
   ],
   providers: [],

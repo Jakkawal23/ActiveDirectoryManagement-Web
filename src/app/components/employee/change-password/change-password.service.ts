@@ -22,4 +22,14 @@ export class ChangePasswordService {
   save(form: PasswordDTO): Observable<any> {
     return this.http.post<void>(this.apiUrl + "/Change", form);
   }
+
+  getDocument(empCode: string) {
+    const data = {empCode : empCode}
+    return this.http.get<any>(this.apiUrl + "/Document",{params: data});
+  }
+
+  delete(Id: number): Observable<any> {
+    const data = { passwordId: Id };
+    return this.http.delete<any>(this.apiUrl + "/DeleteDocument", { params: data });
+  }
 }

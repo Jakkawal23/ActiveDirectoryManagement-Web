@@ -24,9 +24,10 @@ export class PasswordService {
   constructor(private http:HttpClient) { }
 
   apiUrl : string = `${environment.apiUrl}PasswordDocument`
+  changePassUrl : string = `${environment.apiUrl}ChangePasswordByAdmin`
 
-  getList(Status: string) {
-    const data = {Status : Status}
+  getList(status: string) {
+    const data = {status : status}
     return this.http.get<any>(this.apiUrl + "/List",{params: data});
   }
 
@@ -42,14 +43,25 @@ export class PasswordService {
     return this.http.get<any>(this.apiUrl + "/Master/Departments");
   }
 
-  approveDocument(Id: number) {
-    const data = {documentId : Id}
+  approveDocument(Id: number,empCode: string) {
+    const data = {
+      documentId : Id,
+      empCode: empCode
+    }
     return this.http.get<any>(this.apiUrl + "/Approve",{params: data});
   }
 
-  cancleDocument(Id: number) {
-    const data = {documentId : Id}
+  cancelDocument(Id: number,empCode: string) {
+    const data = {
+      documentId : Id,
+      empCode: empCode
+    }
     console.log("cancle password service => ",data)
     return this.http.get<any>(this.apiUrl + "/Cancle",{params: data});
+  }
+
+  changePassword(Id: number) {
+    const data = {documentId : Id}
+    return this.http.get<any>(this.changePassUrl + "/changepassword",{params: data});
   }
 }

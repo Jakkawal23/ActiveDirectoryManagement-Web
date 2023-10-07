@@ -21,3 +21,53 @@
     margin-right: 7px;
     margin-top: 3px;
 }
+
+
+
+
+table {
+    width: 100%;
+  }
+  
+  td, th {
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+  }
+  
+  th{
+    font-weight:bold;
+  }
+  
+  .table-createdate{
+    width:9%;
+    text-align: center;
+    justify-content:center;
+  }
+
+  .table-empcode{
+    width:14%;
+    text-align: center;
+    justify-content:center;
+  }
+  
+  .table-name{
+    width:13%;
+  }
+  
+  .table-lastname{
+    width:13%;
+  }
+
+  .table-position{
+    width:15%;
+  }
+
+  .table-department{
+    width:15%;
+  }
+  
+  .table-action{
+    width:7%;
+    text-align: center;
+    justify-content:center;
+  }

@@ -19,6 +19,8 @@ import { ManageEmployeeDetailComponent } from './components/admin/manage-employe
 import { LoginComponent } from './components/login/login/login.component';
 import { NavbarComponent } from './components/login/navbar/navbar.component';
 import { PasswordComponent } from './components/admin/document/password/password.component';
+import { ManageDocumentComponent } from './components/admin/manage-document/manage-document.component';
+import { ManageDocumentDetailComponent } from './components/admin/manage-document/manage-document-detail/manage-document-detail.component';
 
 const routes: Routes = [
   {
@@ -44,6 +46,14 @@ const routes: Routes = [
   {
     path: 'admin/manageEmployee/detail',
     component: ManageEmployeeDetailComponent
+  },
+  {
+    path: 'admin/manageDocument',
+    component: ManageDocumentComponent
+  },
+  {
+    path: 'admin/manageDocument/detail',
+    component: ManageDocumentDetailComponent
   },
   {
     path: 'admin/position',
