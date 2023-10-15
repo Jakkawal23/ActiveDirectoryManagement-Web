@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ManageEmployeesService } from '../manage-employees.service';
 import { ToastrService } from 'ngx-toastr';
@@ -76,13 +76,18 @@ export class ManageEmployeeDetailComponent {
       password : [null,[Validators.required]],
       passwordConfirm : [null,[Validators.required]],
       mobilePhoneNo : [null,Validators.required],
-      email : [null,Validators.required],
+      email : [null, [Validators.required, this.emailValidator]],
       profileCode : [null,Validators.required],
       active : [null,Validators.required]
     });
   }
 
   Save(){
+    if (this.formEmployee.controls['email'].hasError('invalidEmail')) {
+      this.alert.info('กรุณากรอก อีเมล์ ให้ถูกต้อง', 'แจ้งเตือน');
+      return; 
+    }
+    
     if (this.formEmployee.invalid) {
       this.alert.info('กรุณากรอกข้อมูลให้ครบ', 'แจ้งเตือน');
       return;
@@ -101,5 +106,18 @@ export class ManageEmployeeDetailComponent {
         this.alert.error('ข้อมูลซ้ำ', 'ข้อผิดพลาด');
       }
     });
+  }
+
+  validateNumberInput(event: any) {
+    const input = event.target.value;
+    event.target.value = input.replace(/\D/g, ''); // Remove non-numeric characters
+  }
+
+  emailValidator(control: AbstractControl): { [key: string]: any } | null {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailRegex.test(control.value)) {
+      return { invalidEmail: true };
+    }
+    return null;
   }
 }

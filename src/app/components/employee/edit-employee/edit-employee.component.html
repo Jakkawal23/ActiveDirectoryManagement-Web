@@ -68,7 +68,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-sm-12">
                     <div class="sub-title">เบอร์โทร</div>
-                    <input class="form-control" type="text" placeholder="เบอร์โทร" formControlName="mobilePhoneNo">
+                    <input class="form-control" type="text" placeholder="เบอร์โทร" formControlName="mobilePhoneNo" (input)="validateNumberInput($event)">
                 </div>
             </div>
 

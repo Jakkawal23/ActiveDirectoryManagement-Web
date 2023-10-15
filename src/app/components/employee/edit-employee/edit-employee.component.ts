@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EditEmployeeService } from './edit-employee.service';
 import { LoginService } from '../../login/login/login.service';
@@ -63,7 +63,7 @@ export class EditEmployeeComponent {
       password : [null,[Validators.required,Validators.minLength(8)]],
       passwordConfirm : [null,[Validators.required,Validators.minLength(8)]],
       mobilePhoneNo : [null],
-      email : [null],
+      email : [null, [Validators.required, this.emailValidator]],
     });
     this.formEmployee.controls['employeeCode'].disable();
     this.formEmployee.controls['positionCode'].disable();
@@ -75,6 +75,12 @@ export class EditEmployeeComponent {
   save(){
     const requiredFields = ['employeeCode', 'name', 'lastName', 'mobilePhoneNo', 'email', 'userName'];
     const isAnyRequiredFieldEmpty = requiredFields.some(field => !this.formEmployee?.get(field)?.value);
+
+    if (this.formEmployee.controls['email'].hasError('invalidEmail')) {
+      this.alert.info('กรุณากรอก อีเมล์ ให้ถูกต้อง', 'แจ้งเตือน');
+      return; 
+    }
+
     if (isAnyRequiredFieldEmpty) {
       this.alert.info('กรุณากรอกข้อมูลให้ครบ', 'แจ้งเตือน');
       return;
@@ -92,4 +98,18 @@ export class EditEmployeeComponent {
       }
     });
   }
+
+  validateNumberInput(event: any) {
+    const input = event.target.value;
+    event.target.value = input.replace(/\D/g, ''); // Remove non-numeric characters
+  }
+
+  emailValidator(control: AbstractControl): { [key: string]: any } | null {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailRegex.test(control.value)) {
+      return { invalidEmail: true };
+    }
+    return null;
+  }
+
 }
