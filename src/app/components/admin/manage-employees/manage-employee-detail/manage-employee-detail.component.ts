@@ -73,8 +73,8 @@ export class ManageEmployeeDetailComponent {
       lastName : [null,Validators.required],
       //User
       userName : [null,Validators.required],
-      password : [null,[Validators.required,Validators.minLength(8)]],
-      passwordConfirm : [null,[Validators.required,Validators.minLength(8)]],
+      password : [null,[Validators.required]],
+      passwordConfirm : [null,[Validators.required]],
       mobilePhoneNo : [null,Validators.required],
       email : [null,Validators.required],
       profileCode : [null,Validators.required],

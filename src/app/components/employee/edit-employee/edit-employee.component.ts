@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EditEmployeeService } from './edit-employee.service';
 import { LoginService } from '../../login/login/login.service';
@@ -35,6 +35,7 @@ export class EditEmployeeComponent {
     if(this.employeeCode != ''){
       this.serivce.getDetail(this.employeeCode).subscribe(result =>{
         this.formEmployee.patchValue(result);
+        this.formEmployee.controls['passwordConfirm'].setValue(this.formEmployee.controls['password'].value);
       });
     }
 
@@ -59,14 +60,16 @@ export class EditEmployeeComponent {
       name : [null],
       lastName : [null],
       userName : [null],
+      password : [null,[Validators.required,Validators.minLength(8)]],
+      passwordConfirm : [null,[Validators.required,Validators.minLength(8)]],
       mobilePhoneNo : [null],
       email : [null],
     });
-    // this.formEmployee.disable();
     this.formEmployee.controls['employeeCode'].disable();
     this.formEmployee.controls['positionCode'].disable();
     this.formEmployee.controls['departmentCode'].disable();
     this.formEmployee.controls['teamCode'].disable();
+    this.formEmployee.controls['userName'].disable();
   }
 
   save(){
@@ -76,8 +79,11 @@ export class EditEmployeeComponent {
       this.alert.info('กรุณากรอกข้อมูลให้ครบ', 'แจ้งเตือน');
       return;
     }
+    if (this.formEmployee.controls['password'].value != this.formEmployee.controls['passwordConfirm'].value) {
+      this.alert.info('กรุณากรอกรหัสผ่านให้ถูกต้อง', 'แจ้งเตือน');
+      return;
+    }
     this.serivce.save(this.formEmployee.getRawValue()).subscribe(result => {
-      console.log(result);
       if(result.userName){
         this.formEmployee.patchValue(result);
         this.alert.success('บันทึกข้อมูลเรียบร้อย', 'บันทึก');
